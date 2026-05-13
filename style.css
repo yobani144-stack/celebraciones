@@ -1,7 +1,10 @@
 :root {
-    --black-paper: #0f0f0f;
-    --gold: #d4af37;
-    --gold-bright: #f9e498;
+    --gold: #c5a059;
+    --dark-paper: #121212;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body, html {
@@ -10,111 +13,112 @@ body, html {
     width: 100%;
     height: 100%;
     background-color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
-    font-family: 'Times New Roman', serif;
+    font-family: 'Great Vibes', cursive;
 }
 
-.envelope-container {
+.envelope-wrapper {
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px;
-    transition: all 1s ease-in-out;
+    transition: all 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
 .envelope {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: var(--black-paper);
-    /* Textura de papel sutil */
+    background-color: var(--dark-paper);
+    /* Textura de cuero/papel oscuro */
     background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 80px 0;
-    box-sizing: border-box;
+    overflow: hidden;
 }
 
-/* Líneas diagonales del sobre */
-.envelope::before, .envelope::after {
-    content: '';
+/* Dobladillos del sobre (Las X de la imagen) */
+.fold-left, .fold-right {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
+    width: 150%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1;
 }
 
-.envelope::before {
-    border-top: 1px solid rgba(255,255,255,0.05);
-    background: linear-gradient(45deg, transparent 48%, rgba(0,0,0,0.5) 50%, transparent 52%);
+.fold-left {
+    transform: rotate(45deg);
+    top: 50%;
 }
 
-/* Tipografía elegante */
+.fold-right {
+    transform: rotate(-45deg);
+    top: 50%;
+}
+
+/* Textos */
 .text-top, .text-bottom {
     color: var(--gold);
-    font-style: italic;
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-    opacity: 0.8;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    font-size: 2.8rem;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-/* El Sello de Cera */
-.seal-tap {
+/* Contenedor del Sello */
+.seal-container {
     position: relative;
     z-index: 10;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-.seal-tap:active {
-    transform: scale(0.95);
-}
-
+/* Tamaño del Sello (Modificado para ser más grande) */
 .wax-seal {
-    width: 120px;
-    height: 120px;
+    width: 180px; /* Tamaño del sello aumentado */
+    height: 180px;
     background: radial-gradient(circle, #e6b800, #996600);
     border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 0 15px rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #7a5200;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.5);
+    border: 3px solid #7a5200;
+    transition: transform 0.2s;
 }
 
-.skull-icon {
-    width: 60px;
+.wax-seal img {
+    width: 80%; /* La imagen de Luffy dentro del sello */
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
 }
 
 .btn-abrir {
-    margin-top: 20px;
-    padding: 8px 30px;
+    margin-top: 25px;
+    padding: 10px 40px;
     border: 1px solid var(--gold);
     color: var(--gold);
-    border-radius: 5px;
-    letter-spacing: 3px;
-    font-size: 0.9rem;
-    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50px;
+    font-family: Arial, sans-serif; /* Texto más limpio para el botón */
+    letter-spacing: 4px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, rgba(197, 160, 89, 0.2), transparent);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* Animación de apertura */
+/* Efecto al hacer clic para abrir */
 .open-animation {
-    transform: scale(4) rotateX(20deg);
+    transform: scale(5);
     opacity: 0;
-    filter: blur(10px);
+    pointer-events: none;
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 400px) {
+    .text-top, .text-bottom { font-size: 2.2rem; }
+    .wax-seal { width: 150px; height: 150px; }
 }
