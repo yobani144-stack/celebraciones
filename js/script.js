@@ -1,15 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const envelope = document.getElementById('envelope');
     const openBtn = document.getElementById('openBtn');
+    const container = document.getElementById('mainContainer');
 
     openBtn.addEventListener('click', () => {
-        // Ejecutamos la animación de CSS
-        envelope.classList.add('envelope-open');
+        // Añadir la clase de animación
+        container.classList.add('open-animation');
 
-        // Esperamos 800ms a que termine la animación para cambiar de página
+        // Redirigir tras la animación (1 segundo después)
         setTimeout(() => {
-            // Aquí pones el nombre de tu archivo con los detalles del evento
-            window.location.href = 'invitacion.html'; 
-        }, 800);
+            window.location.href = 'invitacion.html';
+        }, 1000);
     });
 });
