@@ -122,3 +122,61 @@ body, html {
     .text-top, .text-bottom { font-size: 2.2rem; }
     .wax-seal { width: 150px; height: 150px; }
 }
+
+/*para para ocultar el contenido y la clase .fade-out para que el sobre desaparezca con estilo. */
+/* ... (Todo el código anterior del sobre se mantiene igual) ... */
+
+/* Clase para ocultar elementos */
+.hidden {
+    display: none !important;
+}
+
+/* SECCIÓN DE DETALLES (Contenido de la invitación) */
+.details-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: #fdf5e6; /* Estilo papel antiguo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.card-details {
+    width: 85%;
+    max-width: 400px;
+    padding: 30px;
+    border: 10px double #8b4513;
+    background-color: #fff9f0;
+    text-align: center;
+    color: #3e2723;
+}
+
+.card-details h1 {
+    font-size: 2rem;
+    color: #b22222;
+}
+
+.btn-mapa {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #b22222;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-out {
+    opacity: 0;
+    transform: scale(2);
+    transition: 0.8s all ease;
+    pointer-events: none;
+}
