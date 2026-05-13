@@ -1,14 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const openBtn = document.getElementById('openBtn');
-    const mainContainer = document.getElementById('mainContainer');
+    const envelopeSection = document.getElementById('envelope-section');
+    const invitationContent = document.getElementById('invitation-content');
 
     openBtn.addEventListener('click', () => {
-        // Animación de "acercamiento" al sobre
-        mainContainer.classList.add('open-animation');
+        // 1. Aplicamos animación de salida al sobre
+        envelopeSection.classList.add('fade-out');
 
-        // Redirección después de que pase la animación
+        // 2. Esperamos a que termine la animación
         setTimeout(() => {
-            window.location.href = 'invitacion.html';
-        }, 800);
+            // 3. Eliminamos el sobre del flujo de la página
+            envelopeSection.classList.add('hidden');
+            
+            // 4. Mostramos el contenido de la invitación
+            invitationContent.classList.remove('hidden');
+        }, 800); // Tiempo igual al de la transición en CSS
     });
 });
