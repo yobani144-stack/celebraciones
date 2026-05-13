@@ -93,7 +93,7 @@ body, html {
 }
 
 .wax-seal img {
-    width: 95%; /* La imagen de Luffy dentro del sello */
+    width: 100%; /* La imagen de Luffy dentro del sello */
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
 }
 
