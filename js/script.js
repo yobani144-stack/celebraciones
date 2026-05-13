@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const openBtn = document.getElementById('openBtn');
-    const container = document.getElementById('mainContainer');
+    const mainContainer = document.getElementById('mainContainer');
 
     openBtn.addEventListener('click', () => {
-        // Añadir la clase de animación
-        container.classList.add('open-animation');
+        // Animación de "acercamiento" al sobre
+        mainContainer.classList.add('open-animation');
 
-        // Redirigir tras la animación (1 segundo después)
+        // Redirección después de que pase la animación
         setTimeout(() => {
             window.location.href = 'invitacion.html';
-        }, 1000);
+        }, 800);
     });
 });
