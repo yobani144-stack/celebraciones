@@ -88,8 +88,8 @@ body, html {
 .wax-seal {
     width: 200px; /* Tamaño del sello aumentado */
     height: 200px;
-  /*  background: radial-gradient(circle, #e6b800, #996600); 
-    border-radius: 50%; */
+  /*  background: radial-gradient(circle, #e6b800, #996600); */
+    border-radius: 50%; 
     display: flex;
     justify-content: center;
     align-items: center;
