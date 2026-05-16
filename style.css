@@ -89,7 +89,7 @@ body, html {
     width: 200px; /* Tamaño del sello aumentado */
     height: 200px;
   /*  background: radial-gradient(circle, #e6b800, #996600); */
-    border-radius: 50%; 
+    border-radius: 20%; 
     display: flex;
     justify-content: center;
     align-items: center;
