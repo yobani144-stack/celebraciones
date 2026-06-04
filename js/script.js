@@ -1,19 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const openBtn = document.getElementById('openBtn');
-    const envelopeSection = document.getElementById('envelope-section');
-    const invitationContent = document.getElementById('invitation-content');
+function abrirInvitacion() {
+    const inicio = document.getElementById('pantalla-inicio');
+    const contenido = document.getElementById('contenido-invitacion');
 
-    openBtn.addEventListener('click', () => {
-        // 1. Aplicamos animación de salida al sobre
-        envelopeSection.classList.add('fade-out');
+    // 1. Desvanecer la pantalla de inicio
+    inicio.style.opacity = '0';
+    inicio.style.transform = 'translateY(-100vh)'; // Efecto de cortina hacia arriba
 
-        // 2. Esperamos a que termine la animación
-        setTimeout(() => {
-            // 3. Eliminamos el sobre del flujo de la página
-            envelopeSection.classList.add('hidden');
-            
-            // 4. Mostramos el contenido de la invitación
-            invitationContent.classList.remove('hidden');
-        }, 800); // Tiempo igual al de la transición en CSS
-    });
-});
+    // 2. Esperar a que termine la animación de salida para ocultarla por completo y mostrar el contenido
+    setTimeout(() => {
+        inicio.style.display = 'none';
+        
+        // Mostrar el contenido principal con transición
+        contenido.classList.remove('contenido-oculto');
+        contenido.classList.add('contenido-visible');
+        
+        // Opcional: Aquí puedes reproducir música de fondo si la incluyes
+        // document.getElementById('musica-fondo').play();
+    }, 800); // 800ms coincide con la transición del CSS
+}
