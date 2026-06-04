@@ -1,234 +1,40 @@
-:root {
-    --gold: #c5a059;
-    --dark-paper: #121212;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    overflow: hidden;
-    font-family: 'Great Vibes', cursive;
-}
-
-.envelope-wrapper {
-    width: 100vw;
+/* Estado inicial de la pantalla de inicio */
+.seccion-inicio {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: all 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-   
-    background-color: #000;
-    /* Evita que se vean bordes blancos si la bandera se mueve mucho */
+    background-color: #fcfcfc;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+/* Animación para la imagen (efecto flotante o de pulso sutil) */
+.imagen-click {
+    max-width: 80%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.imagen-click:hover {
     transform: scale(1.05);
 }
 
-.envelope {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-paper);
-    /* Textura de cuero/papel oscuro */
-    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    overflow: hidden;
-
-    mask-image: radial-gradient(circle, black 98%, transparent 100%);
-}
-
-/* Dobladillos del sobre (Las X de la imagen) */
-.fold-left, .fold-right {
-    position: absolute;
-    width: 150%;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    z-index: 1;
-}
-
-.fold-left {
-    transform: rotate(45deg);
-    top: 50%;
-}
-
-.fold-right {
-    transform: rotate(-45deg);
-    top: 50%;
-}
-
-/* Textos */
-.text-top, .text-bottom {
-    color: var(--gold);
-    font-size: 2.8rem;
-    z-index: 2;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-/* Contenedor del Sello */
-.seal-container {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-}
-
-/* Tamaño del Sello (Modificado para ser más grande) */
-.wax-seal {
-    width: 200px; /* Tamaño del sello aumentado */
-    height: 200px;
-  /*  background: radial-gradient(circle, #e6b800, #996600); */
-    border-radius: 20%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.5);
-    border: 3px solid #7a5200;
-    transition: transform 0.2s;
-}
-
-.wax-seal img {
-    width: 100%; /* La imagen de Luffy dentro del sello */
-    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
-}
-
-.btn-abrir {
-    margin-top: 25px;
-    padding: 10px 40px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    border-radius: 50px;
-    font-family: Arial, sans-serif; /* Texto más limpio para el botón */
-    letter-spacing: 4px;
-    font-weight: bold;
-    background: linear-gradient(to bottom, rgba(197, 160, 89, 0.2), transparent);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-/* Efecto al hacer clic para abrir */
-.open-animation {
-    transform: scale(5);
+/* Estado oculto del contenido */
+.contenido-oculto {
+    display: none;
     opacity: 0;
-    pointer-events: none;
+    transition: opacity 1s ease-in-out;
 }
 
-/* Ajustes para pantallas muy pequeñas */
-@media (max-width: 400px) {
-    .text-top, .text-bottom { font-size: 2.2rem; }
-    .wax-seal { width: 150px; height: 150px; }
+/* Clase activa que mostrará el contenido principal */
+.contenido-visible {
+    display: block;
+    opacity: 1;
 }
 
-/*para para ocultar el contenido y la clase .fade-out para que el sobre desaparezca con estilo. */
-/* ... (Todo el código anterior del sobre se mantiene igual) ... */
-
-/* Clase para ocultar elementos */
-.hidden {
-    display: none !important;
-}
-
-/* SECCIÓN DE DETALLES (Contenido de la invitación) */
-.details-wrapper {
-    width: 100vw;
-    height: 100vh;
-    background: #fdf5e6; /* Estilo papel antiguo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-.card-details {
-    width: 85%;
-    max-width: 400px;
-    padding: 30px;
-    border: 10px double #8b4513;
-    background-color: #fff9f0;
+/* Estilo para las secciones del contenido para que tengan aire y diseño limpio */
+.seccion-bloque {
+    padding: 60px 20px;
     text-align: center;
-    color: #3e2723;
-}
-
-.card-details h1 {
-    font-size: 2rem;
-    color: #b22222;
-}
-
-.btn-mapa {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #b22222;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/*efecto bandera*/
-/* Animación de la bandera ondeando */
-@keyframes wave {
-    0% {
-        transform: translate(0, 0) rotate(0deg) skew(0deg, 0deg);
-    }
-    25% {
-        transform: translate(2px, -5px) rotate(0.5deg) skew(2deg, 1deg);
-        /*border-radius: 40% 60% 45% 55% / 45% 45% 55% 55%; /*/* Deforma ligeramente los bordes */
-    }
-    50% {
-        transform: translate(-2px, 2px) rotate(-0.5deg) skew(-1deg, -1deg);
-    }
-    75% {
-        transform: translate(2px, -3px) rotate(0.3deg) skew(1.5deg, 0.5deg);
-    }
-    100% {
-        transform: translate(0, 0) rotate(0deg) skew(0deg, 0deg);
-    }
-}
-
-/* Aplicamos la animación al sobre */
-.envelope {
-    position: relative;
-    width: 100%;
-    height: 100%;
-   background-color: var(--dark-paper); 
-    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    overflow: hidden;
-
-    /* --- NUEVO: Efecto Bandera --- */
-    animation: wave 5s ease-in-out infinite; /* Se mueve infinitamente cada 5 segundos */
-    transform-origin: left center; /* Simula que está atada por la izquierda */
-    will-change: transform; /* Optimiza el rendimiento de la animación */
-}
-
-/* IMPORTANTE: Para que el sello no se mueva de forma extraña con el sobre, 
-   podemos darle una animación inversa suave o dejar que siga el movimiento natural. */
-.seal-container {
-    transition: transform 0.3s ease;
-    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
-}
-
-.fade-out {
-    opacity: 0;
-    transform: scale(2);
-    transition: 0.8s all ease;
-    pointer-events: none;
+    border-bottom: 1px solid #eaeaea;
 }
