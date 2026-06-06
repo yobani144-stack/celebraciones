@@ -1,8 +1,8 @@
-//fetch('principal.html')
-   // .then(response => response.text())
-  //  .then(data => {
- //       document.getElementById('contenedor-principal').innerHTML = data;
-//    });
+fetch('principal.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('contenedor-principal').innerHTML = data;
+    });
 
 document.addEventListener("DOMContentLoaded", () => {
     const btnAbrir = document.getElementById("btn-abrir");
