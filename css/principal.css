@@ -1,0 +1,28 @@
+:root {
+    --color-primario: #1c3127;   /* Verde botella / eucalipto oscuro */
+    --color-oro: #c5a059;       /* Dorado mate, no chillón */
+    --color-crema: #fbf9f5;     /* Fondo de papel fino texturizado */
+    --texto-oscuro: #2c2c2c;
+    
+    --fuente-titulos: 'Cinzel', serif;
+    --fuente-cuerpo: 'Montserrat', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-crema);
+    font-family: var(--fuente-cuerpo);
+    overflow: hidden; /* Bloqueamos scroll durante la fase del sobre */
+}
+
+.main-oculto {
+    display: none;
+    opacity: 0;
+}
