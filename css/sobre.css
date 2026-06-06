@@ -15,10 +15,15 @@
 
 /* Escena para habilitar perspectiva 3D */
 .sobre-escena {
-    width: 380px;
+    /*width: 380px; */
     height: 260px;
-    perspective: 1000px;
+   /* perspective: 1000px; */
     position: relative;
+    width: min(90vw, 420px); /* Nunca será más ancho que el 90% de la pantalla */
+    aspect-ratio: 3 / 2;     /* Mantiene la proporción elegante de sobre */
+    perspective: 1500px;
+    overflow: visible;       /* Crucial: permite que la solapa se abra sin cortarse */
+}
 }
 
 @media (max-width: 400px) {
@@ -35,9 +40,19 @@
     transform-style: preserve-3d;
     background-color: var(--color-primario);
     border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+   /* box-shadow: 0 10px 30px rgba(0,0,0,0.15); */
+    box-shadow: 0 15px 45px rgba(0,0,0,0.2);
 }
-
+```css
+:root {
+    --color-primario: #1c3127;   /* Tu verde actual */
+    --color-oro: #c5a059;        /* Un dorado más metálico */
+    --color-crema: #fdfbf7;      /* Crema tipo papel de boda */
+    body {
+    background-color: var(--color-crema);
+    /* Degradado sutil para dar profundidad al fondo */
+    background-image: radial-gradient(circle at center, #ffffff 0%, var(--color-crema) 100%);
+}
 /* Solapa Superior */
 .sobre-solapa {
     position: absolute;
@@ -56,9 +71,11 @@
 
 @media (max-width: 400px) {
     .sobre-solapa {
-        border-left: 150px solid transparent;
+       /* border-left: 150px solid transparent;
         border-right: 150px solid transparent;
-        border-top: 110px solid var(--color-primario);
+        border-top: 110px solid var(--color-primario); */
+        background: linear-gradient(135deg, var(--color-primario) 0%, #254033 100%);
+        clip-path: polygon(0 0, 100% 0, 50% 100%); /* Una forma más limpia */
     }
 }
 
@@ -120,9 +137,9 @@
     margin-top: 10px;
 }
 
-/* Sello de Lacre */
+/* Sello de Lacre*/
 .sello-lacre {
-    position: absolute;
+  /* position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -30%);
@@ -136,7 +153,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease, opacity 0.4s ease 0.2s;
+    transition: transform 0.3s ease, opacity 0.4s ease 0.2s;*/
+    background: radial-gradient(circle at 30% 30%, #e8cc8e 0%, var(--color-oro) 100%);
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .sello-lacre:hover {
@@ -162,11 +181,14 @@
 }
 
 .sobre-instruccion {
-    margin-top: 30px;
+    margin-top: 50px;
+    font-weight: 500;
     font-size: 0.85rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #888888;
+   /* color: #888888; */
+    color: #555;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
     animation: pulse 2s infinite;
 }
 
