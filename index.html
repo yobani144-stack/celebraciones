@@ -2,44 +2,98 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Evento de prueba</title>
-    <link rel="stylesheet" href="style.css">
-     <link rel="stylesheet" href="portada.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Invitación de Boda</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-principal: #2c4a3e; /* Verde elegante */
+            --color-acento: #d4af37;    /* Dorado */
+            --texto-oscuro: #333333;
+            --fondo-claro: #fcfbfa;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--fondo-claro);
+            color: var(--texto-oscuro);
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tu-foto-de-fondo.jpg') center/cover no-repeat;
+            color: white;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .contador {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            font-size: 1.2rem;
+        }
+
+        .tiempo-box {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--texto-oscuro);
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 70px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-    <!-- 1. PANTALLA DE INICIO / BIENVENIDA -->
-<div id="pantalla-inicio" class="seccion-inicio">
-    <div class="sobre-invitacion" onclick="abrirInvitacion()">
-        <img src="img/onepiecelogo.jpeg" alt="Portada de la Invitación" class="imagen-click">
-        <p class="indicador-click">Toca la imagen para abrir</p>
-    </div>
-</div>
 
-<!-- 2. CONTENIDO PRINCIPAL (Oculto inicialmente) -->
-<main id="contenido-invitacion" class="contenido-oculto">
-    
-    <!-- Sección: Temporizador / Cuenta Regresiva -->
-    <section id="cuenta-regresiva" class="seccion-bloque">
-        <h2>¡Falta muy poco!</h2>
-        <div id="timer"><!-- Aquí se inyecta el contador con JS --></div>
+    <!-- PORTADA -->
+    <section class="hero">
+        <h1>Novio & Novia</h1>
+        <p>¡Nos casamos!</p>
+        
+        <!-- CUENTA REGRESIVA -->
+        <div class="contador">
+            <div class="tiempo-box"><span id="dias">00</span><br><small>Días</small></div>
+            <div class="tiempo-box"><span id="horas">00</span><br><small>Horas</small></div>
+            <div class="tiempo-box"><span id="minutos">00</span><br><small>Min.</small></div>
+        </div>
     </section>
 
-    <!-- Sección: Detalles del Evento (Fecha y Lugar) -->
-    <section id="detalles" class="seccion-bloque">
-        <h2>¿Cuándo y Dónde?</h2>
-        <p>Fecha: 26 de Diciembre de 2026</p>
-        <p>Lugar: Salón de Eventos, Acapulco</p>
-    </section>
+    <!-- Aquí irían las secciones de Ubicación, Regalos y RSVP -->
 
-    <!-- Sección: Confirmación (RSVP) -->
-    <section id="confirmacion" class="seccion-bloque">
-        <h2>Confirmar Asistencia</h2>
-        <button class="btn-confirmar">Confirmar por WhatsApp</button>
-    </section>
-<script src="js/script.js" defer></script>
-</main>
+    <script>
+        // Lógica básica del contador
+        const fechaBoda = new Date('December 26, 2026 18:00:00').getTime();
+
+        const countdown = setInterval(() => {
+            const ahora = new Date().getTime();
+            const diferencia = fechaBoda - ahora;
+
+            const d = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById('dias').innerText = d;
+            document.getElementById('horas').innerText = h;
+            document.getElementById('minutos').innerText = m;
+
+            if (diferencia < 0) {
+                clearInterval(countdown);
+                document.querySelector('.contador').innerHTML = "¡Llegó el gran día!";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
