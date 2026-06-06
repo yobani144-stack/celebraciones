@@ -1,13 +1,24 @@
 :root {
     --color-primario: #1c3127;   /* Verde botella / eucalipto oscuro */
     --color-oro: #c5a059;       /* Dorado mate, no chillón */
-    --color-crema: #fbf9f5;     /* Fondo de papel fino texturizado */
+    --color-crema: #fdfbf7;     /* Fondo de papel fino texturizado */
     --texto-oscuro: #2c2c2c;
     
     --fuente-titulos: 'Cinzel', serif;
     --fuente-cuerpo: 'Montserrat', sans-serif;
 }
-
+body {
+    background-color: var(--color-crema);
+    /* Degradado sutil para dar profundidad al fondo */
+    background-image: radial-gradient(circle at center, #ffffff 0%, var(--color-crema) 100%);
+}
+/* Ajuste para el texto de instrucción */
+.sobre-instruccion {
+    margin-top: 50px; /* Más espacio para que no choque con el sobre abierto */
+    font-weight: 500;
+    color: #555;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+}
 * {
     box-sizing: border-box;
     margin: 0;
