@@ -1,3 +1,9 @@
+fetch('principal.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('contenedor-principal').innerHTML = data;
+    });
+
 document.addEventListener("DOMContentLoaded", () => {
     const btnAbrir = document.getElementById("btn-abrir");
     const introScreen = document.getElementById("intro-screen");
