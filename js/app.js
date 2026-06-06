@@ -31,10 +31,10 @@ async function cargarComponente(url, contenedorId) {
 // Orquestación Inicial del Ciclo de Vida de la App
 document.addEventListener('DOMContentLoaded', async () => {
     // Cargamos los estilos específicos del sobre
-    cargarEstilo('../css/sobre.css');
+    cargarEstilo('css/sobre.css');
     
     // Inyectamos el componente HTML del sobre dentro de nuestra raíz
-    await cargarComponente('../sobre.html', 'app-invitacion');
+    await cargarComponente('sobre.html', 'app-invitacion');
     
     // Inicializamos su lógica pasando un callback para cuando el sobre se destruya
     inicializarSobre(() => {
