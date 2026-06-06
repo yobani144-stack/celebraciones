@@ -43,16 +43,7 @@
    /* box-shadow: 0 10px 30px rgba(0,0,0,0.15); */
     box-shadow: 0 15px 45px rgba(0,0,0,0.2);
 }
-```css
-:root {
-    --color-primario: #1c3127;   /* Tu verde actual */
-    --color-oro: #c5a059;        /* Un dorado más metálico */
-    --color-crema: #fdfbf7;      /* Crema tipo papel de boda */
-    body {
-    background-color: var(--color-crema);
-    /* Degradado sutil para dar profundidad al fondo */
-    background-image: radial-gradient(circle at center, #ffffff 0%, var(--color-crema) 100%);
-}
+
 /* Solapa Superior */
 .sobre-solapa {
     position: absolute;
