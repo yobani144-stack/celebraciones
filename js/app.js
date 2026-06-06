@@ -1,4 +1,4 @@
-import { inicializarSobre } from 'js/sobre.js';
+import { inicializarSobre } from 'sobre.js';
 
 /**
  * Inyecta de forma dinámica hojas de estilo CSS en el <head>
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     cargarEstilo('css/sobre.css');
     
     // Inyectamos el componente HTML del sobre dentro de nuestra raíz
-    await cargarComponente('html/sobre.html', 'app-invitacion');
+    await cargarComponente('./sobre.html', 'app-invitacion');
     
     // Inicializamos su lógica pasando un callback para cuando el sobre se destruya
     inicializarSobre(() => {
