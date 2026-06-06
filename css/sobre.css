@@ -1,19 +1,5 @@
-/* CONTENEDOR PRINCIPAL: Asegura el fondo crema premium y centra el sobre */
+/* CONTENEDOR PRINCIPAL */
 .sobre-wrapper {
-   /* position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-crema);
-    background-image: radial-gradient(circle at center, #ffffff 0%, var(--color-crema) 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    transition: opacity 0.8s ease, visibility 0.8s;*/
-
     position: fixed;
     top: 0;
     left: 0;
@@ -29,112 +15,65 @@
     transition: opacity 0.8s ease, visibility 0.8s;
 }
 
-/* ESCENA: Controla el tamaño adaptativo del sobre sin deformarse */
+/* ESCENA: Proporciones fijas sin cortes */
 .sobre-escena {
-    width: min(90vw, 420px); /* Se adapta perfectamente a pantallas móviles */
-    aspect-ratio: 3 / 2;     /* Proporción fija de sobre elegante */
-   /* perspective: 1200px;*/
-    position: relative;
-    overflow: visible;       /* Permite que la solapa suba libremente */
-
-     
+    width: min(90vw, 440px); 
+    aspect-ratio: 3 / 2;     
     perspective: 1500px;
-   
+    position: relative;
+    overflow: visible;       
 }
 
-/* EL OBJETO SOBRE: Actúa como el fondo interno del sobre */
+/* EL OBJETO SOBRE */
 .sobre-objeto {
-  /*  width: 100%;
-    height: 100%;
-    position: absolute;
-    transform-style: preserve-3d;
-    background-color: #14241d;*/ /* Un tono un poco más oscuro para el fondo interior */
-   /* border-radius: 4px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.18); */
-
     width: 100%;
     height: 100%;
     position: absolute;
     transform-style: preserve-3d;
-    background-color: #112019; /* Un tono un poco más oscuro que simula la sombra interior del sobre */
+    background-color: #0f1c16; /* Color oscuro profundo para el fondo interior */
     border-radius: 4px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.18);
 }
 
-/* LA SOLAPA: Hecha con clip-path porcentual (Cero desfases) */
+/* LA SOLAPA SUPERIOR (AJUSTADA): 
+   Ahora cubre el 60% de la altura para bajar más y sellar por completo.
+*/
 .sobre-solapa {
-  /*  position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 55%;*/ /* Llega un poco más abajo del centro */
-   /* background: linear-gradient(135deg, var(--color-primario) 0%, #254033 100%); */
-    /* Crea un triángulo perfecto que escala con el ancho de la pantalla */
-  /*  clip-path: polygon(0 0, 100 0, 50% 100%); 
-    z-index: 5;
-    transform-origin: top center;
-    transition: transform 0.6s ease-in-out, z-index 0.1s 0.3s;
-    filter: drop-shadow(0 4px 5px rgba(0,0,0,0.15));*/
-
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 52%; /* Llega justo un poco más abajo de la mitad */
-    background: linear-gradient(135deg, var(--color-primario) 0%, #162a21 100%);
-    /* Polígono: Triángulo invertido perfecto (Esquinas superiores y centro inferior) */
+    height: 60%; 
+    background: linear-gradient(135deg, var(--color-primario) 0%, #15271e 100%);
+    /* Triángulo que baja limpio cubriendo los laterales */
     clip-path: polygon(0 0, 100% 0, 50% 100%); 
     z-index: 5;
     transform-origin: top center;
     transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.1s 0.35s;
-    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.15));
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,0.2));
 }
 
-/* EL FRENTE DEL SOBRE: Diseño estilo pliegue físico de carta */
+/* EL FRENTE DEL SOBRE (AJUSTADO):
+   Subimos los laterales al 25% (más arriba) para que abracen los costados de la tarjeta
+   y bajamos el centro al 75% creando la "V" donde descansará el sello.
+*/
 .sobre-frontal {
-  /*  position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-primario);*/
-    /* Corta el frente simulando los pliegues laterales e inferiores */
-   /* clip-path: polygon(0 45%, 50% 100%, 100% 45%, 100% 100%, 0 100%);
-    z-index: 4;
-    box-shadow: inset 0 2px 10px rgba(255,255,255,0.05);*/
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, var(--color-primario) 0%, #223c30 100%);
-    /* Puntos del Polígono Corregido:
-       Comienza abajo a la izquierda (0% 100%), sube por el lateral (0% 50%), 
-       baja en diagonal hacia el centro (50% 85%) creando la "V", 
-       sube al lateral derecho (100% 50%) y baja a la esquina inferior derecha (100% 100%).
-    */
-    clip-path: polygon(0 50%, 50% 85%, 100% 50%, 100% 100%, 0 100%);
+    background: linear-gradient(to top, var(--color-primario) 0%, #1f372c 100%);
+    /* NUEVO POLÍGONO: Sube por los lados para tapar los huecos blancos por completo */
+    clip-path: polygon(0 25%, 50% 75%, 100% 25%, 100% 100%, 0 100%);
     z-index: 4;
-    box-shadow: inset 0 1px 5px rgba(255,255,255,0.08);
+    box-shadow: inset 0 1px 4px rgba(255,255,255,0.05);
 }
 
-/* LA TARJETA: Guardada simétricamente dentro del sobre */
+/* LA TARJETA: Protegida al 100% dentro del sobre */
 .sobre-tarjeta {
-  /*  position: absolute;
-    bottom: 5%;
-    left: 4%;
-    width: 92%;
-    height: 90%;
-    background: #ffffff;
-    border-radius: 2px;
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;*/
     position: absolute;
-    bottom: 4%;
+    bottom: 3%;
     left: 4%;
     width: 92%;
     height: 92%;
@@ -145,20 +84,10 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    /* Animación fluida con curva de aceleración natural */
     transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
 }
 
 .tarjeta-extracto {
-  /*  text-align: center;
-    border: 1px solid var(--color-oro);
-    padding: 20px;
-    width: 90%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #fffcf9;*/
     text-align: center;
     border: 1px solid var(--color-oro);
     padding: 20px;
@@ -171,49 +100,24 @@
 }
 
 .siglas {
- /*   font-family: var(--fuente-titulos);
-    color: var(--color-primario);
-    font-size: clamp(1.5rem, 5vw, 2.2rem); /* Tipografía responsiva */
-   /* letter-spacing: 3px;
-    margin: 0;*/
     font-family: var(--fuente-titulos);
     color: var(--color-primario);
     font-size: clamp(1.6rem, 5vw, 2.4rem);
     letter-spacing: 3px;
     margin: 0;
-    
 }
 
 .fecha-pequeña {
-   /* font-size: 0.8rem;
-    letter-spacing: 4px;
-    color: var(--color-oro);
-    margin-top: 15px;*/
     font-size: 0.85rem;
     letter-spacing: 4px;
     color: var(--color-oro);
     margin-top: 15px;
 }
 
-/* SELLO DE LACRE: Centrado perfecto sobre la punta de la solapa */
+/* SELLO DE LACRE: Posicionado exactamente sobre la nueva punta de la solapa */
 .sello-lacre {
-   /* position: absolute;
-    top: 55%; /* Alineado exactamente con la punta de la solapa */
-  /*  left: 50%;
-    transform: translate(-50%, -50%);
-    width: 64px;
-    height: 64px;
-    background: radial-gradient(circle at 35% 35%, #e0c388 0%, var(--color-oro) 100%);
-    border-radius: 50%;
-    z-index: 6;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.25), inset 0 0 8px rgba(0,0,0,0.15);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease, opacity 0.4s ease 0.2s;*/
     position: absolute;
-    top: 52%; /* Sincronizado con la punta de la solapa */
+    top: 60%; /* Alineado con el nuevo height del 60% de la solapa */
     left: 50%;
     transform: translate(-50%, -50%);
     width: 64px;
@@ -222,7 +126,7 @@
     border-radius: 50%;
     z-index: 6;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3), inset 0 0 8px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3), inset 0 0 8px rgba(0,0,0,0.15);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,19 +134,17 @@
 }
 
 .sello-lacre:hover {
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: translate(-50%, -50%) scale(1.06);
 }
 
 .sello-contenido {
-    border: 1.5px dashed rgba(255,255,255,0.4);
+    border: 1.5px dashed rgba(255,255,255,0.35);
     width: 82%;
     height: 82%;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-
-   
 }
 
 .sello-contenido span {
@@ -252,38 +154,28 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
-
-   
 }
 
-/* TEXTO INFERIOR */
+/* TEXTO INFORMATIVO */
 .sobre-instruccion {
-    margin-top: 45px;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #666666;
-    animation: pulse 2s infinite;
-
-   /* margin-top: 50px;
+    margin-top: 50px;
     font-size: 0.8rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: #555555;
-    animation: pulse 2s infinite;*/
+    animation: pulse 2s infinite;
 }
 
-/* --- LOGICA DE ANIMACIÓN 3D AL ABRIR --- */
+/* --- ANIMACIONES DE APERTURA --- */
 
 .sobre-objeto.animar-apertura .sobre-solapa {
     transform: rotateX(180deg);
-    z-index: 2; /* Pasa por detrás de la tarjeta limpia y fluidamente */
+    z-index: 1; 
 }
 
 .sobre-objeto.animar-apertura .sobre-tarjeta {
-    /* La desplaza hacia arriba sacándola del sobre */
-    transform: translateY(-55%); 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transform: translateY(-65%); 
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
 }
 
 .sobre-objeto.animar-apertura .sello-lacre {
