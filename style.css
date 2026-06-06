@@ -1,40 +1,133 @@
-/* Estado inicial de la pantalla de inicio */
-.seccion-inicio {
+:root {
+    --color-principal: #2c4a3e; /* Verde eucalipto profundo */
+    --color-oro: #d4af37;       /* Dorado elegante */
+    --texto-oscuro: #2b2b2b;
+    --fondo-crema: #fdfbf7;
+    --fuente-titulos: 'Cinzel', serif;
+    --fuente-cuerpo: 'Montserrat', sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Bloquea el scroll mientras la intro esté activa */
+    background-color: var(--fondo-crema);
+    font-family: var(--fuente-cuerpo);
+}
+
+/* Contenedor de la Intro */
+.intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--fondo-crema);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que esté por encima de todo */
+    transition: opacity 1s ease, transform 1s ease, visibility 1s;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.intro-contenido {
+    max-width: 500px;
+    animation: fadeInSuave 1.5s ease-out;
+}
+
+.intro-subtitulo {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.intro-titulo {
+    font-family: var(--fuente-titulos);
+    font-size: 2.8rem;
+    color: var(--color-principal);
+    margin: 0 0 20px 0;
+    font-weight: 400;
+}
+
+.intro-frase {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+/* Botón Premium Interactivo */
+.btn-elegante {
+    background: transparent;
+    border: 1px solid var(--color-oro);
+    padding: 15px 35px;
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--texto-oscuro);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s ease;
+}
+
+.btn-elegante:hover {
+    color: white;
+}
+
+/* Efecto de llenado al pasar el mouse */
+.btn-elegante::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-principal);
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.btn-elegante:hover::before {
+    left: 0;
+}
+
+/* Clases para la transición de salida (JS) */
+.intro-oculta {
+    opacity: 0;
+    transform: translateY(-50px);
+    visibility: hidden;
+}
+
+/* Manejo del contenido principal */
+.contenido-oculto {
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.contenido-visible {
+    opacity: 1;
+}
+
+.hero-placeholder {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fcfcfc;
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    background: #f4ede2;
 }
 
-/* Animación para la imagen (efecto flotante o de pulso sutil) */
-.imagen-click {
-    max-width: 80%;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-.imagen-click:hover {
-    transform: scale(1.05);
-}
-
-/* Estado oculto del contenido */
-.contenido-oculto {
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-/* Clase activa que mostrará el contenido principal */
-.contenido-visible {
-    display: block;
-    opacity: 1;
-}
-
-/* Estilo para las secciones del contenido para que tengan aire y diseño limpio */
-.seccion-bloque {
-    padding: 60px 20px;
-    text-align: center;
-    border-bottom: 1px solid #eaeaea;
+/* Animación inicial del texto */
+@keyframes fadeInSuave {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
