@@ -1,4 +1,4 @@
-import { inicializarSobre } from 'sobre.js';
+import { inicializarSobre } from 'js/sobre.js';
 
 /**
  * Inyecta de forma dinámica hojas de estilo CSS en el <head>
