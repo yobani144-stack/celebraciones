@@ -33,14 +33,30 @@
     height: 100%;
     position: absolute;
     transform-style: preserve-3d;
+    background-color: var(--color-primario); /* Este funciona como el "fondo" del sobre */
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  /*  width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
     background-color: var(--color-primario);
     border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);*/
 }
 
 /* Solapa Superior */
 .sobre-solapa {
     position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 210px solid transparent; /* Ajustado al ancho */
+    border-right: 210px solid transparent;
+    border-top: 140px solid var(--color-primario);
+    z-index: 5; 
+    transform-origin: top;
+    transition: transform 0.6s ease-in-out, z-index 0.1s 0.3s;
+  /*  position: absolute;
     top: 0;
     left: 0;
     width: 0;
@@ -51,7 +67,17 @@
     filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
     z-index: 4;
     transform-origin: top center;
-    transition: transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;*/
+}
+.sobre-frontal {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    /* Creamos el efecto de sobre con polígono */
+    background-color: var(--color-primario);
+    clip-path: polygon(0 40%, 50% 100%, 100% 40%, 100% 100%, 0 100%);
+    z-index: 4;
 }
 
 @media (max-width: 400px) {
@@ -86,13 +112,24 @@
     width: 90%;
     height: 90%;
     background: #ffffff;
+    z-index: 3; /* IMPORTANTE: Menor que sobre-frontal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.8s ease-in-out 0.5s;
+   /* position: absolute;
+    bottom: 10px;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background: #ffffff;
     border-radius: 2px;
     z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: transform 0.6s ease-in-out 0.4s; /* Delay para esperar que abra la solapa */
+    transition: transform 0.6s ease-in-out 0.4s; */ /* Delay para esperar que abra la solapa */
 }
 
 .tarjeta-extracto {
@@ -122,6 +159,9 @@
 
 /* Sello de Lacre */
 .sello-lacre {
+
+          z-index: 6;
+    
     position: absolute;
     top: 50%;
     left: 50%;
