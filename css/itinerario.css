@@ -141,7 +141,7 @@
 /* --- RESPONSIVE ADJUSTMENTS (MÓVILES) --- */
 @media (max-width: 600px) {
     .itinerario-camino {
-        padding-left: 50px; /* Encogemos el espacio lateral 
+        padding-left: 50px; /* Encogemos el espacio lateral */
        
     }
     .itinerario-camino::before {
@@ -203,7 +203,7 @@
     /* 2. Reposicionamiento de la línea vertical dorada */
     .itinerario-camino::before {
       /*  left: 41px; /* Movemos la línea para que coincida con el nuevo centro de los círculos */
-        left: 41px;
+        left: 46px;
         top: 0;
         bottom: 0;
     }
