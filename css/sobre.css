@@ -309,11 +309,11 @@
 /* Hace que el sobre parezca flotar suavemente y que su luz respire */
 @keyframes auraFlotante {
     0% {
-        transform: translateY(0);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(197, 160, 89, 0.15);
-    }
+      /*  transform: translateY(0);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(197, 160, 89, 0.15);*/
+           }
     100% {
-        transform: translateY(-8px); /* Flota un poco hacia arriba */
+        transform: translateY(-12px); /* Flota un poco hacia arriba */
         box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6), 0 0 50px rgba(197, 160, 89, 0.35); /* El brillo se expande */
     }
 }
