@@ -146,7 +146,7 @@
     }
     .itinerario-camino::before {
         /*left: 74px; /* Movemos la línea central */
-        left: 90px; /* Movemos la línea central */
+        left: 70px; /* Movemos la línea central */
     }
     .itinerario-circulo {
         left: 0;
