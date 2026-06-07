@@ -1,6 +1,6 @@
 import { inicializarSobre } from './sobre.js';
-import { inicializarContador } from './contador.js'; // Importamos el nuevo módulo
-import { inicializarUbicaciones } from './ubicaciones.js';
+import { inicializarContador } from './contador.js';
+import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importación
 
 function cargarEstilo(ruta) {
     if (document.querySelector(`link[href="${ruta}"]`)) return;
@@ -15,7 +15,14 @@ async function cargarComponente(url, contenedorId) {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
         const html = await response.text();
-        document.getElementById(contenedorId).innerHTML = html;
+        
+        // CORRECCIÓN/MEJORA: Usamos += o append para no borrar lo que ya estaba en main-content
+        const contenedor = document.getElementById(contenedorId);
+        if (contenedor.innerHTML === "") {
+            contenedor.innerHTML = html;
+        } else {
+            contenedor.insertAdjacentHTML('beforeend', html);
+        }
     } catch (error) {
         console.error(`Error cargando el módulo [${url}]:`, error);
     }
@@ -26,25 +33,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     await cargarComponente('sobre.html', 'app-invitacion');
     
     inicializarSobre(async () => {
-        // --- ESTE CÓDIGO SE EJECUTA CUANDO SE ABRE EL SOBRE ---
-        
-        // 1. Cargamos dinámicamente los estilos de la portada
+        // Carga de Fase 2 (Portada)
         cargarEstilo('css/hero-contador.css');
-        
-        // 2. Inyectamos el componente HTML del Hero dentro de <main id="main-content">
         await cargarComponente('hero-contador.html', 'main-content');
         
-        // 3. Activamos el contenedor principal y devolvemos el scroll
         const mainContent = document.getElementById('main-content');
         if (mainContent) {
             mainContent.classList.remove('main-oculto');
-            document.body.style.overflow = 'auto'; // Permitimos navegar hacia abajo
+            document.body.style.overflow = 'auto'; 
         }
-        
-        // 4. Inicializamos la lógica del contador regresivo
         inicializarContador();
 
-            // --- CARGA DE FASE 3 (Ubicaciones) ---
+        // --- CARGA DE FASE 3 (Ubicaciones) ---
         cargarEstilo('css/ubicaciones.css');
         await cargarComponente('ubicaciones.html', 'main-content');
         
