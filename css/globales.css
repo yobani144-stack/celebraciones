@@ -20,7 +20,7 @@ body, html {
     background-color: var(--color-crema);
     font-family: var(--fuente-cuerpo);
     overflow: hidden; /* Bloqueamos scroll durante la fase del sobre */
-   background-image: url('../img/verde.jpeg');
+  /* background-image: url('../img/verde.jpeg');*/
 
 }
 
