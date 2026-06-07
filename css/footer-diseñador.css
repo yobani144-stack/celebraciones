@@ -1,0 +1,151 @@
+.flyer-autor-contenedor {
+    position: relative;
+    width: 100%;
+    background-color: #0b1511; /* Un verde casi negro, ultra elegante y profundo */
+    padding: 80px 20px 40px 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: #ffffff;
+    text-align: center;
+    border-top: 1px solid rgba(197, 160, 89, 0.2); /* Separador sutil dorado */
+}
+
+/* Líneas de fondo abstractas para profundidad visual */
+.flyer-autor-bg-decorativo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% -20%, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.flyer-autor-contenido {
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.flyer-autor-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-oro);
+    border: 1px solid var(--color-oro);
+    padding: 6px 14px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    background-color: rgba(197, 160, 89, 0.03);
+}
+
+.flyer-autor-titulo {
+    font-family: var(--fuente-titulos);
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    color: #ffffff;
+    font-weight: 400;
+    margin: 0 0 15px 0;
+    letter-spacing: 0.5px;
+}
+
+.flyer-autor-texto {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #a3b8ae; /* Tono gris verdoso suave muy elegante */
+    margin-bottom: 40px;
+}
+
+/* --- BOTÓN PREMIUM CON DESTELLO DE LUZ (SHIMMER) --- */
+.btn-whatsapp-autor {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    
+    /* Fondo dorado metálico degradado */
+    background: linear-gradient(135deg, #c5a059 0%, #edd6a4 50%, #c5a059 100%);
+    background-size: 200% auto;
+    
+    padding: 18px 38px;
+    border-radius: 8px; /* Esquinas ligeramente cuadradas dan un aspecto corporativo premium */
+    color: #0b1511; /* Texto oscuro para contraste sobre el oro */
+    text-decoration: none;
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.25);
+    overflow: hidden; /* Corta el destello para que no se salga del botón */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-whatsapp-autor:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(197, 160, 89, 0.4);
+}
+
+.btn-autor-icono {
+    font-size: 1.1rem;
+}
+
+/* Capa del reflejo metálico que viaja por el botón */
+.btn-autor-destello {
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg); /* Inclinación diagonal del haz de luz */
+    animation: brilloEfecto 3.5s infinite ease-in-out;
+}
+
+.flyer-autor-copyright {
+    margin-top: 70px;
+    border-top: 1px solid rgba(163, 184, 174, 0.1);
+    padding-top: 20px;
+}
+
+.flyer-autor-copyright p {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: rgba(163, 184, 174, 0.4);
+    margin: 0;
+}
+
+/* KEYFRAMES PARA EL DESTELLO INFINITO */
+@keyframes brilloEfecto {
+    0% {
+        left: -150%;
+    }
+    30% {
+        left: 150%; /* Pasa velozmente cruzando el botón */
+    }
+    100% {
+        left: 150%; /* Espera en pausa antes de volver a empezar */
+    }
+}
+
+/* ANIMACIONES SCROLL REVEAL */
+.animate-autor {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.animate-autor.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
