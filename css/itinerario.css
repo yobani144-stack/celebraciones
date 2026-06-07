@@ -58,7 +58,8 @@
 /* Ajuste de la hora fija a la izquierda */
 .itinerario-hora {
     position: absolute;
-    left: -90px;
+   /* left: -90px;*/
+    left: -85px;
     width: 80px;
     font-size: 0.85rem;
     font-weight: 600;
