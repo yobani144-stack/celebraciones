@@ -15,13 +15,22 @@
 }
 
 body, html {
-    width: 100%;
+   /* width: 100%;
     height: 100%;
     background-color: var(--color-crema);
     font-family: var(--fuente-cuerpo);
     overflow: hidden; /* Bloqueamos scroll durante la fase del sobre */
   /* background-image: url('../img/verde.jpeg');*/
-
+margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* Fondo estilo "Mesa de Estudio / Estudio de Fotografía" */
+    background-color: #f5f2eb; 
+    background-image: 
+        radial-gradient(circle at 50% 40%, #ffffff 0%, #ede8dc 70%, #dfd8c8 100%);
+    font-family: var(--fuente-cuerpo);
+    overflow: hidden;
 }
 
 .main-oculto {
