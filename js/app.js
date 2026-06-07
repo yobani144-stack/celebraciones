@@ -2,6 +2,7 @@ import { inicializarSobre } from './sobre.js';
 import { inicializarContador } from './contador.js';
 import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importación
 import { inicializarGaleria } from './galeria.js';
+import { inicializarCorte } from './corte.js';
 function cargarEstilo(ruta) {
     if (document.querySelector(`link[href="${ruta}"]`)) return;
     const link = document.createElement('link');
@@ -57,5 +58,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Inicializamos las matemáticas de rotación 3D del carrusel
         inicializarGaleria();
+
+        // --- CARGA DE FASE 5 (Corte de Honor: Padres y Padrinos) ---
+        cargarEstilo('css/corte-honor.css');
+        await cargarComponente('corte-honor.html', 'main-content');
+        
+        // Inicializamos los observadores de scroll para la familia
+        inicializarCorte();
     });
 });
