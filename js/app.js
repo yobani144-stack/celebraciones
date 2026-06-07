@@ -1,5 +1,5 @@
 import { inicializarSobre } from './sobre.js';
-
+import { inicializarContador } from './contador.js'; // Importamos el nuevo módulo
 /**
  * Inyecta de forma dinámica hojas de estilo CSS en el <head>
  * @param {string} ruta - Ruta del archivo CSS
@@ -51,6 +51,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             }, 50);
             
             // TODO: Próxima fase - Cargar aquí el Hero y el contador de tiempo de manera limpia
+            inicializarSobre(async () => {
+        // --- ESTE CÓDIGO SE EJECUTA CUANDO SE ABRE EL SOBRE ---
+        
+        // 1. Cargamos dinámicamente los estilos de la portada
+        cargarEstilo('css/hero-contador.css');
+        
+        // 2. Inyectamos el componente HTML del Hero dentro de <main id="main-content">
+        await cargarComponente('html/hero-contador.html', 'main-content');
+        
+        // 3. Activamos el contenedor principal y devolvemos el scroll
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+            mainContent.classList.remove('main-oculto');
+            document.body.style.overflow = 'auto'; // Permitimos navegar hacia abajo
+        }
+        
+        // 4. Inicializamos la lógica del contador regresivo
+        inicializarContador();
+    });
         }
     });
 });
