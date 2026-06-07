@@ -1,6 +1,7 @@
 import { inicializarSobre } from './sobre.js';
 import { inicializarContador } from './contador.js';
 import { inicializarHistoria } from './historia.js';
+import { inicializarItinerario } from './itinerario.js';
 import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importación
 import { inicializarGaleria } from './galeria.js';
 import { inicializarCorte } from './corte-honor.js';
@@ -49,7 +50,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         cargarEstilo('css/nuestra-historia.css');
         await cargarComponente('nuestra-historia.html', 'main-content');
         inicializarHistoria(); // Inicializa el scroll reveal cronológico
-       
+
+        // --- CARGA DE FASE 2.8: ITINERARIO ---
+        cargarEstilo('css/itinerario.css');
+        await cargarComponente('itinerario.html', 'main-content');
+        inicializarItinerario(); // Dispara el IntersectionObserver del itinerario
+        
         // --- CARGA DE FASE 3 (Ubicaciones) ---
         cargarEstilo('css/ubicaciones.css');
         await cargarComponente('ubicaciones.html', 'main-content');
