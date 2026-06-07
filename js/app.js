@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // --- CARGA DE FASE 3 (Ubicaciones) ---
         cargarEstilo('css/ubicaciones.css');
-        await cargarComponente('html/ubicaciones.html', 'main-content');
+        await cargarComponente('ubicaciones.html', 'main-content');
         
         // Inicializamos el IntersectionObserver para el efecto scroll
         inicializarUbicaciones();
