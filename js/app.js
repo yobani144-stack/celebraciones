@@ -5,6 +5,7 @@ import { inicializarItinerario } from './itinerario.js';
 import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importación
 import { inicializarGaleria } from './galeria.js';
 import { inicializarCorte } from './corte-honor.js';
+import { inicializarRsvp } from './rsvp.js';
 function cargarEstilo(ruta) {
     if (document.querySelector(`link[href="${ruta}"]`)) return;
     const link = document.createElement('link');
@@ -76,5 +77,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Inicializamos los observadores de scroll para la familia
         inicializarCorte();
+
+        // --- CARGA DE FASE FINAL 6: FORMULARIO RSVP INTELIGENTE ---
+        cargarEstilo('css/rsvp.css');
+        await cargarComponente('rsvp.html', 'main-content');
+        
+        // Inicializamos toda la magia interactiva y validaciones hacia WhatsApp
+        inicializarRsvp();
     });
 });
