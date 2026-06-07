@@ -22,7 +22,7 @@ async function cargarComponente(url, contenedorId) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     cargarEstilo('css/sobre.css');
-    await cargarComponente('/sobre.html', 'app-invitacion');
+    await cargarComponente('sobre.html', 'app-invitacion');
     
     inicializarSobre(async () => {
         // --- ESTE CÓDIGO SE EJECUTA CUANDO SE ABRE EL SOBRE ---
