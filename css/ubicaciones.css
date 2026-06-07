@@ -34,7 +34,7 @@
     margin: 20px auto 0 auto;
 }
 
-/* Distribución en rejilla/flex adaptable */
+/* CONTENEDOR FLEXIBLE */
 .tarjetas-flex {
     display: flex;
     justify-content: center;
@@ -43,24 +43,26 @@
     margin-top: 20px;
 }
 
+/* TARJETA REDISEÑADA ESTILO PREMIUM */
 .tarjeta-evento {
     background-color: #ffffff;
-    border: 1px solid rgba(197, 160, 89, 0.15);
-    border-radius: 12px;
-    padding: 40px 30px;
+    border: 1px solid rgba(197, 160, 89, 0.12);
+    border-radius: 16px; /* Esquinas más suaves */
+    padding: 45px 30px;
     width: 100%;
     max-width: 420px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 40px rgba(28, 49, 39, 0.02);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
 }
 
 .tarjeta-evento:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(28, 49, 39, 0.08);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(28, 49, 39, 0.07);
+    border-color: rgba(197, 160, 89, 0.3);
 }
 
 .tarjeta-icono {
@@ -73,59 +75,94 @@
     font-size: 1.4rem;
     color: var(--color-primario);
     font-weight: 400;
-    margin: 0 0 20px 0;
+    margin: 0 0 15px 0;
     letter-spacing: 1px;
 }
 
 .evento-info {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+    min-height: 85px; /* Mantiene la simetría si un texto es más largo que otro */
 }
 
 .evento-detalle {
     font-size: 0.95rem;
     color: #555555;
-    margin: 0 0 8px 0;
-    line-height: 1.5;
+    margin: 0 0 6px 0;
+    line-height: 1.6;
 }
 
-/* Contenedor del mapa para que se adapte de forma estética */
-.mapa-wrapper {
+/* --- NUEVO CONTENEDOR DE FOTO REEMPLAZO DE MAPA --- */
+.evento-imagen-wrapper {
+    position: relative;
     width: 100%;
-    border-radius: 8px;
+    aspect-ratio: 16 / 10; /* Proporción panorámica de cine */
+    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 25px;
-    border: 1px solid #eee;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
 }
 
-/* Botón Premium para GPS */
+.evento-foto-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(10%) contrast(1.02); /* Filtro sutil para dar calidez editorial */
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Capa de gradiente interna para dar volumen a la foto */
+.foto-overlay-brillo {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 60%, rgba(0,0,0,0.05) 100%);
+    pointer-events: none;
+}
+
+/* Zoom al pasar por encima de la tarjeta */
+.tarjeta-evento:hover .evento-foto-preview {
+    transform: scale(1.05);
+}
+
+/* BOTÓN DE ACCIÓN REDISEÑADO (Estilo Minimal) */
 .btn-mapa {
     display: inline-block;
     width: 100%;
-    padding: 14px 0;
+    padding: 15px 0;
     background-color: transparent;
-    border: 1px solid var(--color-primario);
-    border-radius: 6px;
+    border: 1px solid var(--color-oro);
+    border-radius: 8px;
     color: var(--color-primario);
     text-decoration: none;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: 500;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .btn-mapa:hover {
     background-color: var(--color-primario);
+    border-color: var(--color-primario);
     color: #ffffff;
+    box-shadow: 0 5px 15px rgba(28, 49, 39, 0.15);
 }
 
-/* CLASES DE ANIMACIÓN (Scroll Reveal) */
+/* CONTROL RESPONSIVE MÓVIL */
+@media (max-width: 600px) {
+    .tarjeta-evento {
+        padding: 35px 20px;
+    }
+    .evento-imagen-wrapper {
+        aspect-ratio: 16 / 9; /* En celulares se aprovecha un poco más el alto */
+    }
+}
+
+/* CLASES ANIMATE SCROLL (IntersectionObserver que ya configuramos) */
 .animate-scroll {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
-
 .animate-scroll.visible {
     opacity: 1;
     transform: translateY(0);
