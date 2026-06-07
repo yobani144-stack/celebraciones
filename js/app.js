@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         cargarEstilo('css/hero-contador.css');
         
         // 2. Inyectamos el componente HTML del Hero dentro de <main id="main-content">
-        await cargarComponente('html/hero-contador.html', 'main-content');
+        await cargarComponente('hero-contador.html', 'main-content');
         
         // 3. Activamos el contenedor principal y devolvemos el scroll
         const mainContent = document.getElementById('main-content');
