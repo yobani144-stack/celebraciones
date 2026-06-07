@@ -1,0 +1,81 @@
+.boton-musica-flotante {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(197, 160, 89, 0.3); /* Toque dorado muy fino */
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Por encima de todas las secciones de la invitación */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s;
+    opacity: 0; /* Oculto al inicio mientras el sobre está cerrado */
+    visibility: hidden;
+}
+
+/* Se vuelve visible mediante JS al abrir el sobre */
+.boton-musica-flotante.mostrar {
+    opacity: 1;
+    visibility: visible;
+}
+
+.boton-musica-flotante:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.05);
+}
+
+/* --- DISEÑO DE LAS BARRAS DE SONIDO ANIMADAS --- */
+.icono-reproductor {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    width: 16px;
+    height: 14px;
+}
+
+.barra-sonido {
+    width: 3px;
+    background-color: var(--color-primario); /* Tu verde botella original */
+    height: 100%;
+    border-radius: 1px;
+    transform-origin: bottom;
+    transition: transform 0.3s ease, background-color 0.3s;
+}
+
+/* Alturas base en estado de pausa */
+.barra-sonido.b1 { height: 40%; }
+.barra-sonido.b2 { height: 100%; }
+.barra-sonido.b3 { height: 60%; }
+
+/* --- ANIMACIÓN CUANDO LA MÚSICA ESTÁ SONANDO --- */
+.boton-musica-flotante.sonando .barra-sonido {
+    background-color: var(--color-oro); /* Cambia a dorado al reproducir */
+    animation: ecualizador 1.2s ease infinite alternate;
+}
+
+/* Desfases de tiempo para que las barras se muevan de forma orgánica */
+.boton-musica-flotante.sonando .b1 { animation-delay: 0.1s; }
+.boton-musica-flotante.sonando .b2 { animation-delay: 0.4s; }
+.boton-musica-flotante.sonando .b3 { animation-delay: 0.2s; }
+
+@keyframes ecualizador {
+    0% { transform: scaleY(0.3); }
+    100% { transform: scaleY(1.1); }
+}
+
+/* Adaptación para pantallas móviles pequeñas */
+@media (max-width: 600px) {
+    .boton-musica-flotante {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+}
