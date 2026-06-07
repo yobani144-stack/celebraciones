@@ -3,7 +3,7 @@
  */
 export function inicializarRsvp() {
     // Configura aquí tu número de WhatsApp (código de país + 10 dígitos)
-    const NUMERO_WHATSAPP = "523300000000"; 
+    const NUMERO_WHATSAPP = "527291255411"; 
 
     const btnEnviar = document.getElementById('btn-enviar-whatsapp');
     const elementosAnimar = document.querySelectorAll('.animate-rsvp');
