@@ -202,7 +202,8 @@
 
     /* 2. Reposicionamiento de la línea vertical dorada */
     .itinerario-camino::before {
-        left: 41px; /* Movemos la línea para que coincida con el nuevo centro de los círculos */
+      /*  left: 41px; /* Movemos la línea para que coincida con el nuevo centro de los círculos */
+        left: 41px;
         top: 0;
         bottom: 0;
     }
