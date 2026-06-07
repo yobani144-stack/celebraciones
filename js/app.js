@@ -1,96 +1,66 @@
 import { inicializarSobre } from './sobre.js';
 import { inicializarContador } from './contador.js';
 import { inicializarHistoria } from './historia.js';
-import { inicializarItinerario } from './itinerario.js';
-import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importación
+import { inicializarItinerario } from './itinerario.js'; 
+import { inicializarUbicaciones } from './ubicaciones.js';
 import { inicializarGaleria } from './galeria.js';
-import { inicializarCorte } from './corte-honor.js';
+import { inicializarCorte } from './corte.js';
 import { inicializarRsvp } from './rsvp.js';
 import { inicializarFooterDisenador } from './footer-diseñador.js';
-function cargarEstilo(ruta) {
-    if (document.querySelector(`link[href="${ruta}"]`)) return;
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = ruta;
-    document.head.appendChild(link);
-}
 
-async function cargarComponente(url, contenedorId) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
-        const html = await response.text();
-        
-        // CORRECCIÓN/MEJORA: Usamos += o append para no borrar lo que ya estaba en main-content
-        const contenedor = document.getElementById(contenedorId);
-        if (contenedor.innerHTML === "") {
-            contenedor.innerHTML = html;
-        } else {
-            contenedor.insertAdjacentHTML('beforeend', html);
-        }
-    } catch (error) {
-        console.error(`Error cargando el módulo [${url}]:`, error);
-    }
-}
+// --- NUEVAS IMPORTACIONES DE AUDIO ---
+import { encenderMusicaAlApertura, inicializarControlMusica } from './musica.js';
+
+// ... (cargarEstilo y cargarComponente permanecen igual) ...
 
 document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Carga inicial del Sobre 3D
     cargarEstilo('css/sobre.css');
     await cargarComponente('sobre.html', 'app-invitacion');
     
+    // 2. Pre-cargamos el componente de música de forma silenciosa en el DOM
+    // (Esto asegura que el nodo de audio exista antes de abrir el sobre)
+    cargarEstilo('css/musica.css');
+    await cargarComponente('musica.html', 'main-content');
+
     inicializarSobre(async () => {
-        // Carga de Fase 2 (Portada)
+        // --- MOMENTO DE APERTURA DEL SOBRE ---
+        
+        // Disparamos la música y mostramos el botón flotante de inmediato
+        encenderMusicaAlApertura();
+        inicializarControlMusica();
+
+        // Continuación de la carga asíncrona de las demás fases del sitio web
         cargarEstilo('css/hero-contador.css');
         await cargarComponente('hero-contador.html', 'main-content');
-        
         const mainContent = document.getElementById('main-content');
         if (mainContent) {
             mainContent.classList.remove('main-oculto');
             document.body.style.overflow = 'auto'; 
         }
         inicializarContador();
-        // --- CARGA DE FASE 2.5: NUESTRA HISTORIA ---
+        
+        // Carga secuencial del resto de componentes (Historia, Itinerario, Ubicaciones, etc.)
         cargarEstilo('css/nuestra-historia.css');
         await cargarComponente('nuestra-historia.html', 'main-content');
-        inicializarHistoria(); // Inicializa el scroll reveal cronológico
-
-        // --- CARGA DE FASE 2.8: ITINERARIO ---
+        inicializarHistoria();
         cargarEstilo('css/itinerario.css');
-        await cargarComponente('itinerario.html', 'main-content');
-        inicializarItinerario(); // Dispara el IntersectionObserver del itinerario
-        
-        // --- CARGA DE FASE 3 (Ubicaciones) ---
+        await cargarComponente('html/itinerario.html', 'main-content');
+        inicializarItinerario();
         cargarEstilo('css/ubicaciones.css');
         await cargarComponente('ubicaciones.html', 'main-content');
-        
-        // Inicializamos el IntersectionObserver para el efecto scroll
         inicializarUbicaciones();
-
-        // --- CARGA DE FASE 4 (Galería 3D) ---
         cargarEstilo('css/galeria.css');
-        await cargarComponente('galeria.html', 'main-content');
-        
-        // Inicializamos las matemáticas de rotación 3D del carrusel
+        await cargarComponente('html/galeria.html', 'main-content');
         inicializarGaleria();
-
-        // --- CARGA DE FASE 5 (Corte de Honor: Padres y Padrinos) ---
         cargarEstilo('css/corte-honor.css');
         await cargarComponente('corte-honor.html', 'main-content');
-        
-        // Inicializamos los observadores de scroll para la familia
         inicializarCorte();
-
-        // --- CARGA DE FASE FINAL 6: FORMULARIO RSVP INTELIGENTE ---
         cargarEstilo('css/rsvp.css');
         await cargarComponente('rsvp.html', 'main-content');
-        
-        // Inicializamos toda la magia interactiva y validaciones hacia WhatsApp
         inicializarRsvp();
-
-        // --- FASE FINAL 7: FLYER COMERCIAL DEL CREADOR (FOOTER BRANDING) ---
-    cargarEstilo('css/footer-diseñador.css');
-    await cargarComponente('footer-diseñador.html', 'main-content');
-    
-    // Encendemos el Scroll Reveal y las animaciones de destellos reflectivos
-    inicializarFooterDisenador();
+        cargarEstilo('css/footer-diseñador.css');
+        await cargarComponente('footer-diseñador.html', 'main-content');
+        inicializarFooterDisenador();
     });
 });
