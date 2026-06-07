@@ -188,3 +188,73 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+
+/* --- AJUSTES ESPECÍFICOS PARA CELULARES (RESPONSIVE) --- */
+
+/* Esta media query se activa solo en pantallas de 600px de ancho o menos */
+@media (max-width: 600px) {
+    
+    /* 1. Ajuste del contenedor principal en móvil */
+    .itinerario-camino {
+        padding-left: 20px; /* Reducimos el padding lateral izquierdo general */
+        padding-right: 10px; /* Un poco de margen a la derecha */
+    }
+
+    /* 2. Reposicionamiento de la línea vertical dorada */
+    .itinerario-camino::before {
+        left: 41px; /* Movemos la línea para que coincida con el nuevo centro de los círculos */
+        top: 0;
+        bottom: 0;
+    }
+
+    /* 3. Ajuste del contenedor de cada paso */
+    .itinerario-paso {
+        flex-direction: column; /* Cambiamos a disposición vertical */
+        align-items: flex-start; /* Alineamos todo a la izquierda */
+        margin-bottom: 35px; /* Espacio entre eventos */
+        padding-left: 60px; /* Espacio para la línea y círculos a la izquierda */
+    }
+
+    /* 4. Mover la hora ARRIBA del círculo */
+    .itinerario-hora {
+        position: relative; /* Cambiamos de absolute a relative para que fluya en el texto */
+        left: 0;
+        transform: none; /* Eliminamos el centrado vertical previo */
+        top: 0;
+        text-align: left; /* Alineación a la izquierda */
+        margin-bottom: 5px; /* Espacio antes del círculo/tarjeta */
+        display: block; /* Ocupa todo el ancho disponible */
+        width: auto;
+    }
+
+    /* 5. Ajuste del círculo con el icono */
+    .itinerario-circulo {
+        position: absolute; /* Volvemos a absolute para anclarlo a la izquierda */
+        left: 20px; /* Posición horizontal fija */
+        top: 30px; /* Lo bajamos un poco para que no choque con la hora */
+        transform: none; /* Eliminamos el centrado previo */
+        width: 42px; /* Un poco más pequeño para móvil */
+        height: 42px;
+    }
+
+    .itinerario-icono {
+        font-size: 1.1rem; /* Icono un poco más pequeño */
+    }
+
+    /* 6. Ajuste de la tarjeta de texto */
+    .itinerario-tarjeta {
+        margin-left: 0; /* Eliminamos el margen izquierdo previo */
+        padding: 18px; /* Padding interno más ajustado */
+        width: 100%; /* Ocupa el ancho disponible */
+        margin-top: 10px; /* Espacio entre el círculo y la tarjeta */
+    }
+
+    .itinerario-tarjeta h4 {
+        font-size: 1.1rem; /* Título un poco más pequeño */
+    }
+
+    .itinerario-tarjeta p {
+        font-size: 0.85rem; /* Texto un poco más pequeño y legible */
+    }
+}
