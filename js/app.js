@@ -4,7 +4,7 @@ import { inicializarHistoria } from './historia.js';
 import { inicializarItinerario } from './itinerario.js'; 
 import { inicializarUbicaciones } from './ubicaciones.js';
 import { inicializarGaleria } from './galeria.js';
-import { inicializarCorte } from './corte.js';
+import { inicializarCorte } from './corte-honor.js';
 import { inicializarRsvp } from './rsvp.js';
 import { inicializarFooterDisenador } from './footer-diseñador.js';
 import { encenderMusicaAlApertura, inicializarControlMusica } from './musica.js';
