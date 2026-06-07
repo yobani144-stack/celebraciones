@@ -142,10 +142,11 @@
 @media (max-width: 600px) {
     .itinerario-camino {
        /* padding-left: 50px; /* Encogemos el espacio lateral */
-        padding-left: 70px; /* Encogemos el espacio lateral */
+        padding-left: 50px; /* Encogemos el espacio lateral */
     }
     .itinerario-camino::before {
-        left: 74px; /* Movemos la línea central */
+        /*left: 74px; /* Movemos la línea central */
+        left: 90px; /* Movemos la línea central */
     }
     .itinerario-circulo {
         left: 0;
