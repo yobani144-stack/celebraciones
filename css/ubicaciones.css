@@ -1,0 +1,132 @@
+.ubicaciones-contenedor {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.ubicaciones-header {
+    margin-bottom: 50px;
+}
+
+.ubicaciones-subtitulo {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-oro);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.ubicaciones-titulo {
+    font-family: var(--fuente-titulos);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--color-primario);
+    font-weight: 400;
+    margin: 0;
+}
+
+.linea-decorativa {
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-oro);
+    margin: 20px auto 0 auto;
+}
+
+/* Distribución en rejilla/flex adaptable */
+.tarjetas-flex {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.tarjeta-evento {
+    background-color: #ffffff;
+    border: 1px solid rgba(197, 160, 89, 0.15);
+    border-radius: 12px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-evento:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(28, 49, 39, 0.08);
+}
+
+.tarjeta-icono {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.evento-nombre {
+    font-family: var(--fuente-titulos);
+    font-size: 1.4rem;
+    color: var(--color-primario);
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    letter-spacing: 1px;
+}
+
+.evento-info {
+    margin-bottom: 25px;
+}
+
+.evento-detalle {
+    font-size: 0.95rem;
+    color: #555555;
+    margin: 0 0 8px 0;
+    line-height: 1.5;
+}
+
+/* Contenedor del mapa para que se adapte de forma estética */
+.mapa-wrapper {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    border: 1px solid #eee;
+}
+
+/* Botón Premium para GPS */
+.btn-mapa {
+    display: inline-block;
+    width: 100%;
+    padding: 14px 0;
+    background-color: transparent;
+    border: 1px solid var(--color-primario);
+    border-radius: 6px;
+    color: var(--color-primario);
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-mapa:hover {
+    background-color: var(--color-primario);
+    color: #ffffff;
+}
+
+/* CLASES DE ANIMACIÓN (Scroll Reveal) */
+.animate-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
