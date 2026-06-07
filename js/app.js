@@ -1,5 +1,6 @@
 import { inicializarSobre } from './sobre.js';
 import { inicializarContador } from './contador.js';
+import { inicializarHistoria } from './historia.js';
 import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importación
 import { inicializarGaleria } from './galeria.js';
 import { inicializarCorte } from './corte-honor.js';
@@ -44,7 +45,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.body.style.overflow = 'auto'; 
         }
         inicializarContador();
-
+        // --- CARGA DE FASE 2.5: NUESTRA HISTORIA ---
+        cargarEstilo('css/nuestra-historia.css');
+        await cargarComponente('nuestra-historia.html', 'main-content');
+        inicializarHistoria(); // Inicializa el scroll reveal cronológico
+       
         // --- CARGA DE FASE 3 (Ubicaciones) ---
         cargarEstilo('css/ubicaciones.css');
         await cargarComponente('ubicaciones.html', 'main-content');
