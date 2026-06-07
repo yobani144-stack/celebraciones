@@ -1,0 +1,187 @@
+.itinerario-contenedor {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 90px 20px;
+    box-sizing: border-box;
+}
+
+.itinerario-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.itinerario-subtitulo {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-oro);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.itinerario-titulo {
+    font-family: var(--fuente-titulos);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--color-primario);
+    font-weight: 400;
+    margin: 0;
+}
+
+/* --- LA LÍNEA DEL ITINERARIO --- */
+.itinerario-camino {
+    position: relative;
+    padding-left: 90px; /* Espacio para la línea y las horas a la izquierda */
+    margin-top: 20px;
+}
+
+/* Línea vertical izquierda */
+.itinerario-camino::before {
+    content: '';
+    position: absolute;
+    left: 115px; /* Sincronizado exactamente con el centro de los círculos */
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-oro) 0%, rgba(197, 160, 89, 0.15) 100%);
+    z-index: 1;
+}
+
+/* Caja de cada paso */
+.itinerario-paso {
+    position: relative;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Ajuste de la hora fija a la izquierda */
+.itinerario-hora {
+    position: absolute;
+    left: -90px;
+    width: 80px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-oro);
+    font-family: var(--fuente-cuerpo);
+    letter-spacing: 1px;
+    text-align: right;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Círculo contenedor del icono */
+.itinerario-circulo {
+    position: absolute;
+    left: 10px;
+    width: 48px;
+    height: 48px;
+    background-color: #ffffff;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.4s;
+}
+
+.itinerario-icono {
+    font-size: 1.3rem;
+}
+
+/* La tarjeta con el texto explicativo */
+.itinerario-tarjeta {
+    background-color: #ffffff;
+    border: 1px solid rgba(197, 160, 89, 0.08);
+    border-radius: 12px;
+    padding: 22px 28px;
+    margin-left: 55px; /* Despega la tarjeta del círculo */
+    width: 100%;
+    text-align: left;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+}
+
+.itinerario-tarjeta h4 {
+    font-family: var(--fuente-titulos);
+    font-size: 1.2rem;
+    color: var(--color-primario);
+    margin: 0 0 8px 0;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.itinerario-tarjeta p {
+    font-size: 0.88rem;
+    color: #666666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- EFECTOS HOVER PREMIUM --- */
+.itinerario-paso:hover .itinerario-circulo {
+    transform: translateY(-50%) scale(1.1);
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+.itinerario-paso:hover .itinerario-circulo .itinerario-icono {
+    filter: brightness(1.5); /* Hace resaltar el emoji o icono */
+}
+
+.itinerario-paso:hover .itinerario-tarjeta {
+    transform: translateX(5px);
+    box-shadow: 0 10px 30px rgba(28, 49, 39, 0.06);
+    border-color: rgba(197, 160, 89, 0.25);
+}
+
+/* --- RESPONSIVE ADJUSTMENTS (MÓVILES) --- */
+@media (max-width: 600px) {
+    .itinerario-camino {
+        padding-left: 50px; /* Encogemos el espacio lateral */
+    }
+    .itinerario-camino::before {
+        left: 74px; /* Movemos la línea central */
+    }
+    .itinerario-circulo {
+        left: 0;
+        width: 40px;
+        height: 40px;
+    }
+    .itinerario-icono {
+        font-size: 1.1rem;
+    }
+    .itinerario-hora {
+        position: relative;
+        left: 0;
+        width: auto;
+        text-align: left;
+        transform: none;
+        top: 0;
+        margin-bottom: 8px;
+        display: block;
+    }
+    .itinerario-paso {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .itinerario-tarjeta {
+        margin-left: 20px;
+        padding: 20px;
+    }
+}
+
+/* --- ANIMACIONES SCROLL REVEAL --- */
+.animate-itinerario {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.animate-itinerario.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
