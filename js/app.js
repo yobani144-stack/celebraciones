@@ -1,5 +1,6 @@
 import { inicializarSobre } from './sobre.js';
 import { inicializarContador } from './contador.js'; // Importamos el nuevo módulo
+import { inicializarUbicaciones } from './ubicaciones.js';
 
 function cargarEstilo(ruta) {
     if (document.querySelector(`link[href="${ruta}"]`)) return;
@@ -42,5 +43,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // 4. Inicializamos la lógica del contador regresivo
         inicializarContador();
+
+            // --- CARGA DE FASE 3 (Ubicaciones) ---
+        cargarEstilo('css/ubicaciones.css');
+        await cargarComponente('html/ubicaciones.html', 'main-content');
+        
+        // Inicializamos el IntersectionObserver para el efecto scroll
+        inicializarUbicaciones();
     });
 });
