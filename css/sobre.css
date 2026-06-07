@@ -13,6 +13,8 @@
     align-items: center;
     z-index: 10000;
     transition: opacity 0.8s ease, visibility 0.8s;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+                url('../img/textura.jpeg') center/cover no-repeat;
 }
 
 /* ESCENA: Proporciones fijas sin cortes */
