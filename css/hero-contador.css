@@ -4,7 +4,7 @@
     height: 100vh;
     width: 100%;
     /* Pon aquí una foto de ustedes en alta resolución. El cover la adaptará */
-    background: url('../img/foto-principal.jpg') center/cover no-repeat;
+    background: url('../img/novios.jpeg') center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
