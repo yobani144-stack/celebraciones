@@ -1,0 +1,144 @@
+/* SECCIÓN HERO PRINCIPAL */
+.hero-boda {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    /* Pon aquí una foto de ustedes en alta resolución. El cover la adaptará */
+    background: url('../img/foto-principal.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+/* Estado activo disparado al cargar */
+.hero-boda.revelado {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Filtro de contraste oscuro */
+.hero-filtro {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(17, 32, 25, 0.4) 100%);
+    z-index: 1;
+}
+
+.hero-contenido {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hero-subtitulo {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--color-oro);
+    margin-bottom: 15px;
+}
+
+.hero-nombres {
+    font-family: var(--fuente-titulos);
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero-frase {
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+    opacity: 0.9;
+}
+
+/* EL CONTADOR INTERACTIVO (Glassmorphism) */
+.contador-bloque {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 30px 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+.contador-titulo {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.8);
+}
+
+.reloj {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.reloj-unidad {
+    display: flex;
+    flex-direction: column;
+    min-width: 65px;
+}
+
+.reloj-numero {
+    font-family: var(--fuente-titulos);
+    font-size: clamp(1.8rem, 4vw, 2.3rem);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.reloj-etiqueta {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    opacity: 0.7;
+}
+
+.reloj-divisor {
+    font-size: 1.5rem;
+    padding-bottom: 16px;
+    opacity: 0.5;
+    animation: parpadeo 1s infinite;
+}
+
+/* ANIMACIÓN INDICADORA */
+.flecha-scroll {
+    opacity: 0.7;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.flecha-icono {
+    font-size: 1.2rem;
+    margin-top: 5px;
+    animation: rebote 2s infinite;
+}
+
+@keyframes parpadeo {
+    50% { opacity: 0.2; }
+}
+
+@keyframes rebote {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-6px); }
+    60% { transform: translateY(-3px); }
+}
