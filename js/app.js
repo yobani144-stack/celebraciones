@@ -7,11 +7,33 @@ import { inicializarGaleria } from './galeria.js';
 import { inicializarCorte } from './corte.js';
 import { inicializarRsvp } from './rsvp.js';
 import { inicializarFooterDisenador } from './footer-diseñador.js';
-
-// --- NUEVAS IMPORTACIONES DE AUDIO ---
 import { encenderMusicaAlApertura, inicializarControlMusica } from './musica.js';
 
 // ... (cargarEstilo y cargarComponente permanecen igual) ...
+function cargarEstilo(ruta) {
+    if (document.querySelector(`link[href="${ruta}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = ruta;
+    document.head.appendChild(link);
+}
+async function cargarComponente(url, contenedorId) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+        const html = await response.text();
+        
+        // CORRECCIÓN/MEJORA: Usamos += o append para no borrar lo que ya estaba en main-content
+        const contenedor = document.getElementById(contenedorId);
+        if (contenedor.innerHTML === "") {
+            contenedor.innerHTML = html;
+        } else {
+            contenedor.insertAdjacentHTML('beforeend', html);
+        }
+    } catch (error) {
+        console.error(`Error cargando el módulo [${url}]:`, error);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Carga inicial del Sobre 3D
