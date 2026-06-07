@@ -45,13 +45,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         await cargarComponente('nuestra-historia.html', 'main-content');
         inicializarHistoria();
         cargarEstilo('css/itinerario.css');
-        await cargarComponente('html/itinerario.html', 'main-content');
+        await cargarComponente('itinerario.html', 'main-content');
         inicializarItinerario();
         cargarEstilo('css/ubicaciones.css');
         await cargarComponente('ubicaciones.html', 'main-content');
         inicializarUbicaciones();
         cargarEstilo('css/galeria.css');
-        await cargarComponente('html/galeria.html', 'main-content');
+        await cargarComponente('galeria.html', 'main-content');
         inicializarGaleria();
         cargarEstilo('css/corte-honor.css');
         await cargarComponente('corte-honor.html', 'main-content');
