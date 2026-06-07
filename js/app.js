@@ -6,6 +6,7 @@ import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importaci
 import { inicializarGaleria } from './galeria.js';
 import { inicializarCorte } from './corte-honor.js';
 import { inicializarRsvp } from './rsvp.js';
+import { inicializarFooterDisenador } from './footer-diseñador.js';
 function cargarEstilo(ruta) {
     if (document.querySelector(`link[href="${ruta}"]`)) return;
     const link = document.createElement('link');
@@ -84,5 +85,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Inicializamos toda la magia interactiva y validaciones hacia WhatsApp
         inicializarRsvp();
+
+        // --- FASE FINAL 7: FLYER COMERCIAL DEL CREADOR (FOOTER BRANDING) ---
+    cargarEstilo('css/footer-diseñador.css');
+    await cargarComponente('footer-diseñador.html', 'main-content');
+    
+    // Encendemos el Scroll Reveal y las animaciones de destellos reflectivos
+    inicializarFooterDisenador();
     });
 });
