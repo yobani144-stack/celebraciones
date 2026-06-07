@@ -2,7 +2,7 @@ import { inicializarSobre } from './sobre.js';
 import { inicializarContador } from './contador.js';
 import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importación
 import { inicializarGaleria } from './galeria.js';
-import { inicializarCorte } from './corte.js';
+import { inicializarCorte } from './corte-honor.js';
 function cargarEstilo(ruta) {
     if (document.querySelector(`link[href="${ruta}"]`)) return;
     const link = document.createElement('link');
