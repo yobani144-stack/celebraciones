@@ -1,0 +1,189 @@
+.historia-contenedor {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 90px 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.historia-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.historia-subtitulo {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-oro);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.historia-titulo {
+    font-family: var(--fuente-titulos);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--color-primario);
+    font-weight: 400;
+    margin: 0;
+}
+
+/* --- LA ESTRUCTURA DE LA LÍNEA DE TIEMPO --- */
+.timeline-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Línea vertical central */
+.timeline-linea-central {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--color-oro) 0%, rgba(197, 160, 89, 0.1) 100%);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Fila individual del hito */
+.timeline-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Forzamos que cada hito ocupe el 45% del ancho */
+.timeline-foto, .timeline-contenido {
+    width: 45%;
+    box-sizing: border-box;
+}
+
+/* Bloque de contenido elegante */
+.timeline-contenido {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    border: 1px solid rgba(197, 160, 89, 0.08);
+    text-align: left;
+}
+
+.historia-fecha {
+    font-size: 0.8rem;
+    font-family: var(--fuente-cuerpo);
+    color: var(--color-oro);
+    font-weight: 600;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.historia-hito-titulo {
+    font-family: var(--fuente-titulos);
+    font-size: 1.3rem;
+    color: var(--color-primario);
+    margin: 0 0 12px 0;
+    font-weight: 400;
+}
+
+.historia-texto {
+    font-size: 0.9rem;
+    color: #555555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Bloque de foto cuadrada artística */
+.timeline-foto {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    border: 4px solid #ffffff;
+}
+
+.timeline-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.timeline-item:hover .timeline-foto img {
+    transform: scale(1.05);
+}
+
+/* El punto dorado sobre la línea central */
+.timeline-punto-eje {
+    position: absolute;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border: 2px solid var(--color-oro);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    box-shadow: 0 0 0 4px rgba(255,255,255,1);
+}
+
+/* --- EFECTO ALTERNADO JUGANDO CON LOS HIJOS (EVEN / ODD) --- */
+
+/* Por defecto (Hijos impares: 1, 3...): Foto Izquierda, Texto Derecha */
+.timeline-item:nth-child(odd) {
+    flex-direction: row;
+}
+
+/* Hijos pares (2, 4...): Volteamos la dirección: Texto Izquierda, Foto Derecha */
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.timeline-item:nth-child(even) .timeline-contenido {
+    text-align: right; /* Alineamos el texto a la derecha para simetría */
+}
+
+/* --- RESPONSIVE DESIGN (MÓVILES) --- */
+@media (max-width: 768px) {
+    .timeline-linea-central {
+        left: 20px; /* Movemos la línea al extremo izquierdo */
+    }
+    
+    .timeline-item {
+        flex-direction: column !important; /* Todo en fila vertical hacia abajo */
+        align-items: flex-start;
+        padding-left: 45px;
+        margin-bottom: 45px;
+    }
+    
+    .timeline-foto, .timeline-contenido {
+        width: 100% !important; /* Ocupan todo el ancho disponible */
+        text-align: left !important;
+    }
+    
+    .timeline-foto {
+        aspect-ratio: 16 / 9; /* En celular se vuelve panorámica para que luzca más */
+        margin-bottom: 15px;
+    }
+    
+    .timeline-punto-eje {
+        left: 20px; /* Alineado con la nueva posición de la línea */
+    }
+}
+
+/* --- ANIMACIÓN SCROLL REVEAL ELEGANTE --- */
+.animate-historia {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.animate-historia.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
