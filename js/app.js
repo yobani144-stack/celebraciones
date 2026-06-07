@@ -1,7 +1,7 @@
 import { inicializarSobre } from './sobre.js';
 import { inicializarContador } from './contador.js';
 import { inicializarUbicaciones } from './ubicaciones.js'; // 1. Nueva importación
-
+import { inicializarGaleria } from './galeria.js';
 function cargarEstilo(ruta) {
     if (document.querySelector(`link[href="${ruta}"]`)) return;
     const link = document.createElement('link');
@@ -50,5 +50,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Inicializamos el IntersectionObserver para el efecto scroll
         inicializarUbicaciones();
+
+        // --- CARGA DE FASE 4 (Galería 3D) ---
+        cargarEstilo('css/galeria.css');
+        await cargarComponente('galeria.html', 'main-content');
+        
+        // Inicializamos las matemáticas de rotación 3D del carrusel
+        inicializarGaleria();
     });
 });
